@@ -35,3 +35,35 @@ paths:
             application/json:
               example:
                 error: Internal server error
+  /movies:
+    get:
+      summary: List all movies
+      description: Returns a list of all movies in the database.
+      operationId: listMovies
+      responses:
+        '200':
+          description: List of movies retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              example:
+                error: Internal server error
+
+components:
+  schemas:
+    Movie:
+      type: object
+      properties:
+        title:
+          type: string
+        release_year:
+          type: integer
+        genre:
+          type: string
